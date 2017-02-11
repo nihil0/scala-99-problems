@@ -3,7 +3,8 @@ package com.s99
 class S99List {
 /** The List section of Scala99
  *
- *  Mutability is frowned upon and Lists only have two methods head and tail.
+ *  Mutability is frowned upon and Lists only have methods head, isEmpty and tail. Length method may be used but should be avoided
+ *  if it leads to a trivial solution. L33t functional programz allowed. 
  */
     def last(inputList: List[Int]): Int = {
 
@@ -29,4 +30,19 @@ class S99List {
         else
             nth(idx-1, inputList.tail)
     }
+
+    def length(inputList: List[Int]): Int = {
+
+        def lenRecursion(n: Int, someList: List[Int]): Int = {
+            if (someList.isEmpty)
+                return n
+            else
+                lenRecursion(n+1, someList.tail)
+        }
+
+        return lenRecursion(0,inputList)
+    }
+
+    def reverse(input: List[Int]): List[Int] = input.foldLeft(List[Int]())( (x: List[Int], y: Int) => y :: x )
+
 }
